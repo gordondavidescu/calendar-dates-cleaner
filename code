@@ -1,0 +1,86 @@
+function friendly(str) {
+  var tempDate1 = str[0].split('-');  
+  var tempDate2 = str[1].split('-');
+
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var friendlyday = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th", "15th","16th","17th","18th","19th","20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"];
+  
+  var d1 = parseInt(tempDate1[2]-1,10);
+  var d2 = parseInt(tempDate2[2]-1,10);
+  var y1 = parseInt(tempDate1[0],10);
+  var y2 = parseInt(tempDate2[0],10);
+  var mn1 = parseInt(tempDate1[1],10);
+  var mn2 = parseInt(tempDate2[1],10);
+  var m1 = months[mn1-1];
+  var m2 = months[mn2-1];
+  friendlyRange = [];
+  
+  if (y1==y2)
+  {
+    if (m1==m2)
+      {
+      friendlyRange[0]=(m1 + " " + friendlyday[d1]); 
+      friendlyRange[1]=(friendlyday[d2]);  
+      }
+    else
+      {
+      friendlyRange[0]=(m1 + friendlyday[d1]); 
+      friendlyRange[1]=(m2 + friendlyday[d2]);  
+        
+      }
+  }
+  
+  if (y1+1==y2)
+    {
+      var tempmonth = (12-mn1)+mn2;
+      if (tempmonth<12)
+        {
+      friendlyRange[0]=(m1 + " " + friendlyday[d1]); 
+      friendlyRange[1]=(m2 + " " + friendlyday[d2]);  
+          
+        }
+      if (m1 == m2)
+      {
+        if (d1-1 == d2)
+          {
+            friendlyRange[0]=(m1 + " " + friendlyday[d1] + ", " + y1); 
+      friendlyRange[1]=(m2 + " " + friendlyday[d2]);
+          }
+        if (d1 == d2)
+          {
+           friendlyRange[0]=(m1 + " " + friendlyday[d1] + ", " + y1);
+      friendlyRange[1]=(m2 + " " + friendlyday[d2] + ", " + y2); 
+          }
+        
+      }
+    }
+  else if (y1+1<y2)
+    {
+      friendlyRange[0]=(m1 + " " + friendlyday[d1] + ", " + y1);
+      friendlyRange[1]=(m2 + " " + friendlyday[d2] + ", " + y2);
+    }
+  
+  if (y1 == y2)
+    
+    {
+      if (d1 === d2)
+          {
+            friendlyRange[0]=(m1 + " " + friendlyday[d1] + ", " + y1);
+            friendlyRange.length=1;
+          }
+      else if (m1 == m2)
+        {
+          friendlyRange[0]=(m1 + " " + friendlyday[d1]);
+          friendlyRange[1]=(friendlyday[d2]);
+        }
+      else
+        {
+          friendlyRange[0]=(m1 + " " + friendlyday[d1] + ", " + y1);
+          friendlyRange[1]=(m2 + " " + friendlyday[d2]);
+        }
+    }
+  
+  
+  return (friendlyRange);
+      
+}
